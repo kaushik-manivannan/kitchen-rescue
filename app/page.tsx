@@ -1,9 +1,11 @@
-import Image from "next/image";
+import { Container, Typography } from "@mui/material";
 
 export default function Home() {
   return (
     <main>
-      Hello World!
+      <Container sx={{ height: '100vh' }}>
+        <Typography variant="h1">Hello World!</Typography>
+      </Container>
     </main>
   );
 }
