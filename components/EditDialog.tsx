@@ -7,11 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { DialogProps } from '@/interfaces/Dialog.interface';
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import { db } from '@/app/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import { printSuccessMessage } from '@/utils/utils';
 
 const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePantryItem }) => {
+  const theme = useTheme();
 
   return (
     <Dialog
@@ -31,13 +33,19 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
             quantity: quantity as number
           });
           updatePantryItem(item.id, name, quantity);
+          printSuccessMessage(`Item Updated Successfully!`)
           handleClose();
+        },
+        sx: {
+          padding: theme.spacing(2),
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: theme.shape.borderRadius,
         },
       }}
     >
-      <DialogTitle>Edit Item</DialogTitle>
+      <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold' }}>Edit Item</DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        <DialogContentText sx={{ marginBottom: theme.spacing(2), textAlign: 'center' }}>
           Edit the details of the pantry item.
         </DialogContentText>
         <TextField
@@ -52,9 +60,9 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
           variant="outlined"
           color="primary"
           defaultValue={item.name}
+          sx={{ marginBottom: theme.spacing(2) }}
         />
         <TextField
-          autoFocus
           required
           margin="normal"
           id="quantity"
@@ -66,22 +74,17 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
           variant="outlined"
           defaultValue={item.quantity}
           InputProps={{
-            inputProps: { 
-              min: 1
-            }
-        }}
+            inputProps: { min: 1 },
+          }}
+          sx={{ marginBottom: theme.spacing(2) }}
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} variant="outlined">
-          <Typography textTransform={'capitalize'}>
-            Cancel
-          </Typography>
+      <DialogActions sx={{ justifyContent: 'center' }}>
+        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1) }}>
+          <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
         <Button type="submit" variant="contained">
-          <Typography textTransform={'capitalize'}>
-            Save
-          </Typography>
+          <Typography textTransform={'capitalize'}>Save</Typography>
         </Button>
       </DialogActions>
     </Dialog>

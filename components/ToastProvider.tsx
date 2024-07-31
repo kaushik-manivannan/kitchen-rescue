@@ -13,7 +13,7 @@ export default function ToastProvider({ children }: ToastProviderProps) {
       {children}
       <ToastContainer
         stacked
-        position="top-center"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}

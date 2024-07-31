@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import { IconButton } from '@mui/material';
+import { IconButton, Paper } from '@mui/material';
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from '@/app/firebase';
 import { useState } from 'react';
@@ -50,7 +50,7 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
 
   return (
     <>
-      <Box sx={{ minWidth: 275, maxWidth: 'fit-content' }}>
+      <Paper sx={{ minWidth: 275, maxWidth: 'fit-content', borderRadius: 5}}>
         <Card variant="outlined" raised={true} sx={{paddingY: 3, borderRadius: 5}}>
           <CardContent>
             <Typography variant="h5" component="div" sx={{textAlign: 'center', fontSize: '2rem', marginBottom: 2}}>
@@ -77,7 +77,7 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
             </Button>
           </CardActions>
         </Card>
-      </Box>
+      </Paper>
       <EditDialog open={openDialog} handleClose={handleDialogClose} item={item} updatePantryItem={updatePantryItem}/>
     </>
   );

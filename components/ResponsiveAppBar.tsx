@@ -39,7 +39,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <KitchenIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -92,7 +92,7 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <Link href={`/${page.toLowerCase()}`}>
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textTransform={'capitalize'}>{page}</Typography>
                     </MenuItem>
                 </Link>
               ))}
@@ -119,13 +119,13 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link href={`/${page.toLowerCase()}`}>
+              <Link href={`/${page.toLowerCase()}`} className='mx-2'>
                 <Button
                     key={page}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                    {page}
+                    <Typography textTransform={'capitalize'}>{page}</Typography>
                 </Button>
               </Link>
             ))}

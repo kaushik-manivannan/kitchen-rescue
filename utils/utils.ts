@@ -1,9 +1,9 @@
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 
-// Prints Toaster
-function printToastMessage (message: string) {
+// Prints Toaster Success Message
+export function printSuccessMessage (message: string) {
   toast.success(message, {
-      position: "top-center",
+      position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -15,4 +15,16 @@ function printToastMessage (message: string) {
     });
 }
 
-export default printToastMessage;
+export function printErrorMessage (message: string) {
+  toast.error(message, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+}

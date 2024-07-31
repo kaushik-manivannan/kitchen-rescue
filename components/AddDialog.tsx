@@ -7,9 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { AddDialogProps } from '@/interfaces/Dialog.interface';
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 
 const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem }) => {
+  const theme = useTheme();
 
   return (
     <Dialog
@@ -26,11 +27,16 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           addPantryItem(name, quantity);
           handleClose();
         },
+        sx: {
+          padding: theme.spacing(2),
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: theme.shape.borderRadius,
+        },
       }}
     >
-      <DialogTitle>Add New Item</DialogTitle>
+      <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold' }}>Add New Item</DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        <DialogContentText sx={{ marginBottom: theme.spacing(2), textAlign: 'center' }}>
           Add the details of the pantry item.
         </DialogContentText>
         <TextField
@@ -44,9 +50,9 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           fullWidth
           variant="outlined"
           color="primary"
+          sx={{ marginBottom: theme.spacing(2) }}
         />
         <TextField
-          autoFocus
           required
           margin="normal"
           id="quantity"
@@ -57,22 +63,17 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           fullWidth
           variant="outlined"
           InputProps={{
-            inputProps: { 
-              min: 1
-            }
-        }}
+            inputProps: { min: 1 },
+          }}
+          sx={{ marginBottom: theme.spacing(2) }}
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} variant="outlined">
-          <Typography textTransform={'capitalize'}>
-            Cancel
-          </Typography>
+      <DialogActions sx={{ justifyContent: 'center' }}>
+        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1) }}>
+          <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
         <Button type="submit" variant="contained">
-          <Typography textTransform={'capitalize'}>
-            Add
-          </Typography>
+          <Typography textTransform={'capitalize'}>Add</Typography>
         </Button>
       </DialogActions>
     </Dialog>
