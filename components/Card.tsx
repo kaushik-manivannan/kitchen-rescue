@@ -50,17 +50,17 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
 
   return (
     <>
-      <Box sx={{ minWidth: 275 }}>
-        <Card variant="outlined">
+      <Box sx={{ minWidth: 275, maxWidth: 'fit-content' }}>
+        <Card variant="outlined" raised={true} sx={{paddingY: 3, borderRadius: 5}}>
           <CardContent>
-            <Typography variant="h5" component="div" sx={{textAlign: 'center'}}>
+            <Typography variant="h5" component="div" sx={{textAlign: 'center', fontSize: '2rem', marginBottom: 2}}>
               {item.name}
             </Typography>
             <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
               <IconButton onClick={() => reduceQuantity(item.id)} color="primary" aria-label="Decrease">
                 <RemoveIcon />
               </IconButton>
-              <Typography color="text.secondary">
+              <Typography color="secondary.main" sx={{fontSize: '1.8rem', marginX: 1}}>
                 {item.quantity}
               </Typography>
               <IconButton color="primary" aria-label="Increase" onClick={() => increaseQuantity(item.id)}>

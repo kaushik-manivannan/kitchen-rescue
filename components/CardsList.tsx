@@ -7,6 +7,8 @@ import { db } from '@/app/firebase';
 import { PantryItem } from '@/interfaces/PantryItem.interface';
 import AddDialog from './AddDialog';
 import { Box, Button, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import printToastMessage from '@/utils/utils';
 
 const CardsList = () => {
 
@@ -25,6 +27,7 @@ const CardsList = () => {
         setPantryItems(items);
     }
     fetchItems();
+
   }, [])
 
   // Add a new pantry item
@@ -35,6 +38,7 @@ const CardsList = () => {
     });
     setPantryItems(prevItems => [...prevItems, { name: name,
     quantity: quantity, id: docRef.id }]);
+    printToastMessage(`${name} Added Successfully!`)
   };
 
   // Update a pantry item
@@ -45,6 +49,7 @@ const CardsList = () => {
     setPantryItems(prevItems =>
       prevItems.map(item => (item.id === updatedItem.id ? updatedItem : item))
     );
+    printToastMessage(`Item Updated Successfully!`)
   };
 
   // Delete a pantry item
@@ -55,6 +60,8 @@ const CardsList = () => {
     setPantryItems(prevItems =>
       prevItems.filter(item => item.id !== id)
     );
+
+    printToastMessage(`Item Deleted Successfully!`)
   };
 
   // Opens Add Dialog Box
@@ -69,16 +76,16 @@ const CardsList = () => {
 
   return (
     <>
-    <Box sx={{width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <Button sx={{margin: '20px auto', width: 'fit-content', paddingY: 2}} variant="contained" onClick={handleDialogOpen}>
+    <Box sx={{width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+        <Button sx={{margin: '20px auto', width: 'fit-content', paddingY: 2}} variant="contained" onClick={handleDialogOpen} endIcon={<AddIcon />}>
             <Typography textTransform={'capitalize'}>
                     Add New Item
             </Typography>
         </Button>
-        <ul className='flex gap-4 flex-wrap'>
+        <ul className='flex gap-8 flex-wrap justify-center w-[80vw] mt-4'>
         {
             pantryItems.map((item: PantryItem) => (
-                <li className='flex-1'>
+                <li>
                   <OutlinedCard item={item} key={item.id} updatePantryItem={updatePantryItem} deletePantryItem={deletePantryItem} addPantryItem={addPantryItem} />
                 </li>
             ))

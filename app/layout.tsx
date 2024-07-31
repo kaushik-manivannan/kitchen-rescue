@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import ResponsiveAppBar from "@/components/ResponsiveAppBar";
+import ToastProvider from "@/components/ToastProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <ResponsiveAppBar />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <ToastProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <ResponsiveAppBar />
+              {children}
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </ToastProvider>
       </body>
     </html>
   );

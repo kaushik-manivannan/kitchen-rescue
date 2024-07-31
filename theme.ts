@@ -7,10 +7,10 @@ import type {} from '@mui/x-data-grid/themeAugmentation';
 const theme: Theme = createTheme({
     palette: {
         primary: {
-            main: '#2B2E4A',
+            main: '#2C3E50',
         },
         secondary: {
-            main: '#6EACDA',
+            main: '#0e1d31',
         },
         error: {
             main: '#FF4C4C',
