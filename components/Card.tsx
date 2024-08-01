@@ -22,12 +22,16 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
 
   // Reduces the item quantity by 1
   const reduceQuantity = async (id: string) => {
-    const editedItem = doc(db, "items", id);
-    const newQuantity = item.quantity - 1
-    await updateDoc(editedItem, {
-        quantity: newQuantity
-    });
-    updatePantryItem(id, item.name, newQuantity);
+    if (item.quantity > 1) {
+      const editedItem = doc(db, "items", id);
+      const newQuantity = item.quantity - 1;
+      await updateDoc(editedItem, {
+          quantity: newQuantity
+      });
+      updatePantryItem(id, item.name, newQuantity);
+    } else {
+      deletePantryItem(id);
+    }
   }
 
   // Increase the item quantity by 1
