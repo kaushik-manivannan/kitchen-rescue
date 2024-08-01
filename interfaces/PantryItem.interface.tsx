@@ -2,6 +2,7 @@ export interface PantryItem {
     id: string;
     name: string;
     quantity: number;
+    userId: string;
 }
 
 export interface OutlinedCardProps {

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import ResponsiveAppBar from "@/components/ResponsiveAppBar";
 import ToastProvider from "@/components/ToastProvider";
+import { Providers } from "@/components/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,22 +15,24 @@ export const metadata: Metadata = {
   description: "Pantry Tracker AI App",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToastProvider>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <ResponsiveAppBar />
-              {children}
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </ToastProvider>
+        <Providers>
+          <ToastProvider>
+            <AppRouterCacheProvider>
+              <ThemeProvider theme={theme}>
+                {children}
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </ToastProvider>
+        </Providers>
       </body>
     </html>
   );

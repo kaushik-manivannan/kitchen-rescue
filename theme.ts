@@ -20,11 +20,10 @@ const theme: Theme = createTheme({
         },
     },
     components: {
-        MuiDataGrid: {
+        MuiContainer: {
           styleOverrides: {
             root: {
-            },
-            columnHeaderTitle: {
+                minWidth: '100vw'
             },
           },
         },
