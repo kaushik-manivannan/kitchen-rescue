@@ -1,9 +1,9 @@
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 // Prints Toaster Success Message
 export function printSuccessMessage (message: string) {
   toast.success(message, {
-      position: "bottom-right",
+      position: "bottom-center",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -17,7 +17,7 @@ export function printSuccessMessage (message: string) {
 
 export function printErrorMessage (message: string) {
   toast.error(message, {
-      position: "bottom-right",
+      position: "bottom-center",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,

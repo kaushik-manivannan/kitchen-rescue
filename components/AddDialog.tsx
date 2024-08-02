@@ -34,11 +34,15 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
         },
       }}
     >
-      <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold' }}>Add New Item</DialogTitle>
-      <DialogContent>
-        <DialogContentText sx={{ marginBottom: theme.spacing(2), textAlign: 'center' }}>
-          Add the details of the pantry item.
-        </DialogContentText>
+        <DialogTitle sx={{ 
+        textAlign: 'center', 
+        fontWeight: 'bold', 
+        fontSize: { xs: '2.5rem', sm: '3rem' },
+        }}
+        >
+          Add New Item
+        </DialogTitle>
+        <DialogContent>
         <TextField
           autoFocus
           required
@@ -51,6 +55,9 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           variant="outlined"
           color="primary"
           sx={{ marginBottom: theme.spacing(2) }}
+          InputProps={{
+            inputProps: { minlength: 1 , maxlength: 50},
+          }}
         />
         <TextField
           required
@@ -63,16 +70,16 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           fullWidth
           variant="outlined"
           InputProps={{
-            inputProps: { min: 1 },
+            inputProps: { min: 1 , max: 10000},
           }}
           sx={{ marginBottom: theme.spacing(2) }}
         />
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'center' }}>
-        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1) }}>
+        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1), px: 2 ,py: 1}}>
           <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" sx={{px: 2 ,py: 1, backgroundColor: 'secondary.main'}}>
           <Typography textTransform={'capitalize'}>Add</Typography>
         </Button>
       </DialogActions>

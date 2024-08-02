@@ -43,11 +43,15 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
         },
       }}
     >
-      <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold' }}>Edit Item</DialogTitle>
+      <DialogTitle sx={{ 
+        textAlign: 'center', 
+        fontWeight: 'bold', 
+        fontSize: { xs: '2.5rem', sm: '3rem' },
+        }}
+      >
+        Update Item
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText sx={{ marginBottom: theme.spacing(2), textAlign: 'center' }}>
-          Edit the details of the pantry item.
-        </DialogContentText>
         <TextField
           autoFocus
           required
@@ -80,10 +84,10 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
         />
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'center' }}>
-        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1) }}>
+        <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1), px: 2, py: 1}}>
           <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" sx={{px: 2 ,py: 1, backgroundColor: 'secondary.main'}}>
           <Typography textTransform={'capitalize'}>Save</Typography>
         </Button>
       </DialogActions>

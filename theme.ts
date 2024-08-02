@@ -1,4 +1,3 @@
-import { GridColumnHeadersProps } from './node_modules/@mui/x-data-grid/components/GridColumnHeaders.d';
 'use client';
 
 import { createTheme, Theme } from '@mui/material/styles';
@@ -7,16 +6,18 @@ import type {} from '@mui/x-data-grid/themeAugmentation';
 const theme: Theme = createTheme({
     palette: {
         primary: {
-            main: '#2C3E50',
+            main: '#3D392A',
         },
         secondary: {
-            main: '#0e1d31',
+            main: '#C05F3D',
+            dark: '#753A25',
+            light: '#DAA08B'
         },
         error: {
             main: '#FF4C4C',
         },
         background: {
-            default: '#2B2E4A',
+            default: '#EEEDE3',
         },
     },
     components: {
@@ -26,6 +27,13 @@ const theme: Theme = createTheme({
                 minWidth: '100vw'
             },
           },
+        },
+        MuiFormHelperText:{
+            styleOverrides: {
+                root: {
+                    marginTop: '12px'
+                },
+            },
         },
       },
 });

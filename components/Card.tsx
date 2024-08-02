@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import { IconButton, Paper } from '@mui/material';
+import { Divider, IconButton, Paper } from '@mui/material';
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from '@/app/firebase';
 import { useState } from 'react';
@@ -54,35 +54,104 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
 
   return (
     <>
-      <Paper sx={{ minWidth: 275, maxWidth: 'fit-content', borderRadius: 5}}>
-        <Card variant="outlined" raised={true} sx={{paddingY: 3, borderRadius: 5}}>
-          <CardContent>
-            <Typography variant="h5" component="div" sx={{textAlign: 'center', fontSize: '2rem', marginBottom: 2}}>
+      <Paper 
+        elevation={3}
+        sx={{ 
+          width: 300, 
+          borderRadius: 4, 
+          overflow: 'hidden',
+          transition: 'all 0.3s ease-in-out',
+        }}
+      >
+        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}>
+          <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography 
+              variant="h5" 
+              component="div" 
+              sx={{
+                fontSize: '2.3rem',
+                fontWeight: 700,
+                color: 'primary.main',
+                mt: 2,
+                mb: 1,
+                textAlign: 'center'
+              }}
+            >
               {item.name}
             </Typography>
-            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-              <IconButton onClick={() => reduceQuantity(item.id)} color="primary" aria-label="Decrease">
+            <Box 
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                borderRadius: 2,
+                p: 1
+              }}
+            >
+              <IconButton 
+                onClick={() => reduceQuantity(item.id)} 
+                sx={{ color: 'primary.main'}}
+                aria-label="Decrease"
+              >
                 <RemoveIcon />
               </IconButton>
-              <Typography color="secondary.main" sx={{fontSize: '1.8rem', marginX: 1}}>
+              <Typography 
+                sx={{ 
+                  fontSize: '2.5rem', 
+                  mx: 2,
+                  color: 'primary.main',
+                  fontWeight: '400'
+                }}
+              >
                 {item.quantity}
               </Typography>
-              <IconButton color="primary" aria-label="Increase" onClick={() => increaseQuantity(item.id)}>
+              <IconButton 
+                onClick={() => increaseQuantity(item.id)}
+                sx={{ color: 'primary.main' }}
+                aria-label="Increase"
+              >
                 <AddIcon />
               </IconButton>
             </Box>
           </CardContent>
-          <CardActions sx={{display: 'flex', justifyContent: 'center'}}>
-            <Button onClick={handleDialogOpen} variant="contained" startIcon={<EditIcon />}>
-              <Typography textTransform={'capitalize'}>Edit</Typography>
+          <Divider sx={{mb: 1, borderColor: 'background.default'}}/>
+          <CardActions sx={{ justifyContent: 'space-evenly', px: 2, pb: 2 }}>
+            <Button 
+              onClick={() => setOpenDialog(true)} 
+              variant="outlined" 
+              startIcon={<EditIcon />}
+              sx={{ 
+                borderRadius: 2,
+                textTransform: 'none',
+                fontSize: '1rem',
+                fontWeight: 'light',
+              }}
+            >
+              Edit
             </Button>
-            <Button onClick={() => deletePantryItem(item.id)} variant="contained" startIcon={<DeleteIcon />} color="error">
-              <Typography textTransform={'capitalize'}>Delete</Typography>
+            <Button 
+              onClick={() => deletePantryItem(item.id)} 
+              variant="outlined" 
+              startIcon={<DeleteIcon />} 
+              color="secondary"
+              size='large'
+              sx={{
+                borderRadius: 2,
+                textTransform: 'none',
+                fontSize: '1rem',
+                fontWeight: 'light',
+              }}
+            >
+              Delete
             </Button>
           </CardActions>
         </Card>
       </Paper>
-      <EditDialog open={openDialog} handleClose={handleDialogClose} item={item} updatePantryItem={updatePantryItem}/>
+      <EditDialog 
+        open={openDialog} 
+        handleClose={() => setOpenDialog(false)} 
+        item={item} 
+        updatePantryItem={updatePantryItem}
+      />
     </>
   );
 };

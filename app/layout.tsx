@@ -4,7 +4,6 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
-import ResponsiveAppBar from "@/components/ResponsiveAppBar";
 import ToastProvider from "@/components/ToastProvider";
 import { Providers } from "@/components/SessionProvider";
 

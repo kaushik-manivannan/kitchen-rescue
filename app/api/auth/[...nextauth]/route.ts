@@ -30,12 +30,12 @@ export const authOptions: AuthOptions = {
           // Throw specific errors based on Firebase error codes
           switch (error.code) {
             case 'auth/user-not-found':
-            case 'auth/wrong-password':
-              throw new Error('Invalid Credentials');
+            case 'auth/invalid-credential':
+              throw new Error('InvalidCredentials');
             case 'auth/too-many-requests':
-              throw new Error('Too Many Attempts');
+              throw new Error('TooManyAttempts');
             default:
-              throw new Error('Server Error');
+              throw new Error('ServerError');
           }
         }
       }

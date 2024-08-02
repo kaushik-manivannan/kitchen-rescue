@@ -6,8 +6,9 @@ import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } 
 import { db } from '@/app/firebase';
 import { PantryItem } from '@/interfaces/PantryItem.interface';
 import AddDialog from './AddDialog';
-import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, InputAdornment, Skeleton, TextField, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
 import { printErrorMessage, printSuccessMessage } from '@/utils/utils';
 import { useSession } from 'next-auth/react';
 
@@ -116,34 +117,74 @@ const CardsList = () => {
 
   return (
     <>
-    <Box sx={{width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <div className='flex gap-6'>
+    <Box sx={{ width: '100%', margin: '0 auto', padding: '20px'}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 4, justifyContent: 'center'}}>
         <TextField
-            sx={{ margin: '20px auto' }}
-            variant="outlined"
-            label="Search Items"
-            value={searchQuery}
-            onChange={handleSearchChange}
+          sx={{
+            flexGrow: 1,
+            maxWidth: '400px',
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '20px',
+            },
+          }}
+          variant="outlined"
+          placeholder="Search items..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="action" />
+              </InputAdornment>
+            ),
+          }}
         />
-        <Button sx={{margin: '20px auto', width: 'fit-content', paddingY: 2}} variant="contained" onClick={handleDialogOpen} endIcon={<AddIcon />}>
-              <Typography textTransform={'capitalize'}>
-                      Add New Item
-              </Typography>
+        <Button 
+          variant="contained" 
+          onClick={handleDialogOpen} 
+          endIcon={<AddIcon />}
+          sx={{
+            marginLeft: '16px',
+            borderRadius: '20px',
+            textTransform: 'none',
+            textWrap: 'nowrap',
+            px: 3,
+            py: 1.5,
+            fontSize: '1.1rem',
+            backgroundColor: 'secondary.main',
+            '&:hover': {
+                  backgroundColor: 'secondary.dark',
+            }
+          }}
+        >
+          Add Item
         </Button>
-      </div>
-        {loading ? (
-          <CircularProgress/>
-        ) : (
-        <ul className='flex gap-8 flex-wrap justify-center w-[80vw] mt-4'>
-        {
-            filteredItems.map((item: PantryItem) => (
-              <li key={item.id}>
-                <OutlinedCard item={item} updatePantryItem={updatePantryItem} deletePantryItem={deletePantryItem} addPantryItem={addPantryItem} />
-              </li>
-            ))
-        }
+      </Box>
+      
+      {loading ? (
+        <Box sx={{ marginTop: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <CircularProgress sx={{mb: 5}}/>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, flexWrap: 'wrap'}}>
+            <Skeleton animation="wave" variant="rounded" width={300} height={258} />
+            <Skeleton animation="wave" variant="rounded" width={300} height={258} />
+            <Skeleton animation="wave" variant="rounded" width={300} height={258} />
+            <Skeleton animation="wave" variant="rounded" width={300} height={258} />
+          </Box>
+        </Box>
+      ) : (
+        <ul className='flex gap-8 flex-wrap justify-center w-full mt-4'>
+          {filteredItems.map((item: PantryItem) => (
+            <li key={item.id}>
+              <OutlinedCard 
+                item={item} 
+                updatePantryItem={updatePantryItem} 
+                deletePantryItem={deletePantryItem} 
+                addPantryItem={addPantryItem} 
+              />
+            </li>
+          ))}
         </ul>
-        )}
+      )}
     </Box>
     <AddDialog open={openDialog} handleClose={handleDialogClose} addPantryItem={addPantryItem} userId={userId}/>
     </>
