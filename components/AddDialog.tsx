@@ -56,7 +56,7 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
           color="primary"
           sx={{ marginBottom: theme.spacing(2) }}
           InputProps={{
-            inputProps: { minlength: 1 , maxlength: 50},
+            inputProps: { minlength: 1 , maxlength: 30},
           }}
         />
         <TextField

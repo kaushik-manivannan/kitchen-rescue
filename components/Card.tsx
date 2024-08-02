@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import { Divider, IconButton, Paper } from '@mui/material';
+import { ClickAwayListener, Divider, IconButton, Paper, Tooltip } from '@mui/material';
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from '@/app/firebase';
 import { useState } from 'react';
@@ -19,6 +19,7 @@ import EditDialog from './EditDialog';
 const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, deletePantryItem }) => {
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
   // Reduces the item quantity by 1
   const reduceQuantity = async (id: string) => {
@@ -52,6 +53,14 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
     setOpenDialog(false);
   }
 
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
+
+  const handleTooltipToggle = () => {
+    setTooltipOpen(!tooltipOpen);
+  };
+
   return (
     <>
       <Paper 
@@ -65,20 +74,43 @@ const OutlinedCard: React.FC<OutlinedCardProps> = ({ item, updatePantryItem, del
       >
         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}>
           <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Typography 
-              variant="h5" 
-              component="div" 
-              sx={{
-                fontSize: '2.3rem',
-                fontWeight: 700,
-                color: 'primary.main',
-                mt: 2,
-                mb: 1,
-                textAlign: 'center'
-              }}
-            >
-              {item.name}
-            </Typography>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+              <Tooltip
+                PopperProps={{
+                  disablePortal: true,
+                }}
+                onClose={handleTooltipClose}
+                open={tooltipOpen}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title={item.name}
+              >
+                <Typography 
+                  variant="h5" 
+                  component="div" 
+                  onClick={handleTooltipToggle}
+                  sx={{
+                    fontSize: '2rem',
+                    fontWeight: 700,
+                    color: 'primary.main',
+                    textAlign: 'center',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    display: '-webkit-box',
+                    wordBreak: 'break-all',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    width: '100%',
+                    margin: '0 auto',
+                    cursor: 'pointer',
+                    marginY: 1
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              </Tooltip>
+            </ClickAwayListener>
             <Box 
               sx={{
                 display: 'flex',

@@ -6,7 +6,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } 
 import { db } from '@/app/firebase';
 import { PantryItem } from '@/interfaces/PantryItem.interface';
 import AddDialog from './AddDialog';
-import { Box, Button, CircularProgress, InputAdornment, Skeleton, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, InputAdornment, Skeleton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { printErrorMessage, printSuccessMessage } from '@/utils/utils';

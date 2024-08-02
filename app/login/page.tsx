@@ -39,7 +39,7 @@ export default function Login() {
             setError('An unexpected error occurred. Please try again.');
         }
       } else {
-        router.push('/inventory');
+        router.push('/dashboard');
       }
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');

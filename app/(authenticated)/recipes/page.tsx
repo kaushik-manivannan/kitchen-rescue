@@ -7,9 +7,6 @@ import { PantryItem } from "@/interfaces/PantryItem.interface";
 import { printErrorMessage } from "@/utils/utils";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import AbundantItemsChart from "@/components/AbundantItemsChart";
-import LeastItemsChart from "@/components/LeastItemsChart";
-import AllItemsPieChart from "@/components/AllItemsPieChart";
 
 export default function Dashboard() {
 
@@ -42,9 +39,6 @@ export default function Dashboard() {
 
   return (
     <Container sx={{ display: "flex", justifyContent: "center", mt: 12, width: '100vw', flexWrap: 'wrap', gap: 8}}>
-      <AllItemsPieChart pantryItems={pantryItems}/>
-      <AbundantItemsChart pantryItems={pantryItems}/>
-      <LeastItemsChart pantryItems={pantryItems}/>
     </Container>
   );
 }
