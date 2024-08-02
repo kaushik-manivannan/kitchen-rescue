@@ -40,7 +40,7 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
         fontSize: { xs: '2.5rem', sm: '3rem' },
         }}
         >
-          Add New Item
+          Add Item
         </DialogTitle>
         <DialogContent>
         <TextField

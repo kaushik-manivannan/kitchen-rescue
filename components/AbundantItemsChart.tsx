@@ -10,7 +10,7 @@ const AbundantItemsChart = ({ pantryItems }: any) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const sortedPantryItems = [...pantryItems].sort((a, b) => b.quantity - a.quantity);
-  const topFiveItems = sortedPantryItems.slice(0, 5);
+  const topFiveItems = sortedPantryItems.filter((element, index) => index < 5);
 
   const chartSetting = {
     xAxis: [

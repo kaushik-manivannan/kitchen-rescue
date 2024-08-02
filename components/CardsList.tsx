@@ -43,22 +43,52 @@ const CardsList = () => {
     fetchItems();
   }, [userId])
 
-  // Add a new pantry item
+  // Add a new pantry item or update existing item
   const addPantryItem = async (name: string, quantity: number) => {
     if (!userId) return;
     try {
-      const docRef = await addDoc(collection(db, 'items'), {
-        name: name,
-        quantity: quantity,
-        userId: userId,
-      });
-      setPantryItems((prevItems) => [
-        ...prevItems,
-        { name: name, quantity: quantity, id: docRef.id, userId: userId },
-      ]);
-      printSuccessMessage(`${name} Added Successfully!`);
+      // Check if the item already exists
+      const existingItemIndex = pantryItems.findIndex(
+        item => item.name.toLowerCase() === name.toLowerCase()
+      );
+
+      if (existingItemIndex !== -1) {
+        // Item exists, update the quantity
+        const existingItem = pantryItems[existingItemIndex];
+        const updatedQuantity = existingItem.quantity + quantity;
+        
+        // Update in Firestore
+        const itemDocRef = doc(db, 'items', existingItem.id);
+        await updateDoc(itemDocRef, {
+          quantity: updatedQuantity,
+        });
+
+        // Update local state
+        setPantryItems(prevItems => 
+          prevItems.map((item, index) => 
+            index === existingItemIndex 
+              ? { ...item, quantity: updatedQuantity } 
+              : item
+          )
+        );
+
+        printSuccessMessage(`${name} quantity updated to ${updatedQuantity}!`);
+        
+      } else {
+        // Item doesn't exist, add new item
+        const docRef = await addDoc(collection(db, 'items'), {
+          name: name,
+          quantity: quantity,
+          userId: userId,
+        });
+        setPantryItems((prevItems) => [
+          ...prevItems,
+          { name: name, quantity: quantity, id: docRef.id, userId: userId },
+        ]);
+        printSuccessMessage(`${name} Added Successfully!`);
+      }
     } catch (error) {
-      printErrorMessage(`Error Adding Item: ${error}`);
+      printErrorMessage(`Error Adding/Updating Item: ${error}`);
     }
   };
 

@@ -10,7 +10,7 @@ const LeastItemsChart = ({ pantryItems }: any) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const sortedPantryItems = [...pantryItems].sort((a, b) => a.quantity - b.quantity);
-  const leastFiveItems = sortedPantryItems.slice(0, 5);
+  const leastFiveItems = sortedPantryItems.filter((element, index) => index < 5);
 
   const chartSetting = {
     xAxis: [
@@ -64,9 +64,9 @@ const LeastItemsChart = ({ pantryItems }: any) => {
           series={[
             { dataKey: 'quantity', label: 'Quantity', valueFormatter },
           ]}
-          layout="horizontal"
           {...chartSetting}
-          colors={['#FF9A3C']}
+          layout="horizontal"
+          colors={['#C05F3D']}
         />
       </Box>
     </Box>
