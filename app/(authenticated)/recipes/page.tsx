@@ -4,11 +4,9 @@ import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import RecipesList from "@/components/RecipesList";
 import RecipeForm from "@/components/RecipeForm";
-import { usePantryItems } from "@/providers/PantryContext";
 
 export default function Recipes() {
   
-  const { pantryItems, setPantryItems } = usePantryItems();
   const [recipes, setRecipes] = useState<any[]>([]);
 
   return (

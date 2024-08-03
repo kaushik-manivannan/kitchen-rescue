@@ -95,7 +95,7 @@ export default function RecipesList({ recipes }: RecipesListProps) {
                 </Typography>
               }
             />
-            <CardContent sx={{ display: 'flex', flexDirection: 'column', flex: 1, mt: isMobile ? 2 : 4 }}>
+            <CardContent sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, mb: isMobile ? 2 : 4 }}>
                 <Typography variant="h6" color="text.primary" sx={{ fontSize: isMobile ? '1rem' : '1.25rem' }}>
                   Ingredients:
@@ -106,7 +106,7 @@ export default function RecipesList({ recipes }: RecipesListProps) {
                     border: 1,
                     borderColor: 'grey.300',
                     borderRadius: 2,
-                    p: isMobile ? 2 : 4,
+                    p: isMobile ? 2 : 3,
                     mt: isMobile ? 1 : 2,
                     mb: isMobile ? 2 : 4,
                   }}
@@ -124,9 +124,9 @@ export default function RecipesList({ recipes }: RecipesListProps) {
                 <Typography variant="h6" color="text.primary" sx={{ fontSize: isMobile ? '1rem' : '1.25rem' }}>
                   Instructions:
                 </Typography>
-                <List sx={{ listStyleType: 'decimal', pl: isMobile ? 2 : 4, mt: isMobile ? 1 : 2 }}>
+                <List sx={{ listStyleType: 'decimal', pl: isMobile ? 2 : 4 }}>
                   {recipe.instructions.map((step: string, i: number) => (
-                    <ListItem key={i} sx={{ display: 'list-item', mb: isMobile ? 1 : 2 }}>
+                    <ListItem key={i} sx={{ display: 'list-item' }}>
                       <Typography variant="body2" color="text.primary">
                         {step}
                       </Typography>

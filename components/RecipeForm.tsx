@@ -10,12 +10,14 @@ import {
   Paper,
 } from '@mui/material';
 import { generateRecipes } from "@/utils/actions";
+import { PantryItem } from '@/interfaces/PantryItem.interface';
 
 interface RecipeFormProps {
   setRecipes: (recipes: any[]) => void;
 }
 
 export default function RecipeForm({ setRecipes }: RecipeFormProps) {
+
   const [formData, setFormData] = useState({
     ingredients: '',
     cookingTime: '',
@@ -66,13 +68,16 @@ export default function RecipeForm({ setRecipes }: RecipeFormProps) {
               multiline
               rows={3}
               name="ingredients"
-              label="Extra Ingredients"
-              placeholder="If you'd like to add extra ingredients apart from the ones in your inventory, please specify them here"
+              label="Ingredients"
+              placeholder="Pro Tip: Use ingredients from your inventory"
               variant="outlined"
               value={formData.ingredients}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
+              InputProps={{
+                inputProps: { minlength: 1 , maxlength: 200},
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -85,6 +90,9 @@ export default function RecipeForm({ setRecipes }: RecipeFormProps) {
               onChange={handleChange}
               InputLabelProps={{ shrink: true }}
               placeholder="e.g. 1 hour"
+              InputProps={{
+                inputProps: { minlength: 1 , maxlength: 20},
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -97,6 +105,9 @@ export default function RecipeForm({ setRecipes }: RecipeFormProps) {
               onChange={handleChange}
               InputLabelProps={{ shrink: true }}
               placeholder="e.g. Indian"
+              InputProps={{
+                inputProps: { minlength: 1 , maxlength: 20},
+              }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -109,6 +120,9 @@ export default function RecipeForm({ setRecipes }: RecipeFormProps) {
               onChange={handleChange}
               InputLabelProps={{ shrink: true }}
               placeholder="e.g. Vegan, Lactose Free, Gluten Free"
+              InputProps={{
+                inputProps: { minlength: 1 , maxlength: 50},
+              }}
             />
           </Grid>
           <Grid item xs={12}>

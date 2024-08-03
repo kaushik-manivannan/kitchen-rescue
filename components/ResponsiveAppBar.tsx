@@ -17,6 +17,7 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const pages = ['Dashboard', 'Inventory', 'Recipes'];
 const settings = ['Logout'];
@@ -143,7 +144,9 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
+              <Avatar sx={{ bgcolor: 'secondary.main' }}>
+                <AccountCircleIcon />
+              </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
