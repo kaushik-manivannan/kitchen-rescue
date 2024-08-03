@@ -1,44 +1,26 @@
 'use client';
 
-import { Container } from "@mui/material";
-import { useEffect, useState } from "react";
-import { db } from "@/app/firebase";
-import { PantryItem } from "@/interfaces/PantryItem.interface";
-import { printErrorMessage } from "@/utils/utils";
-import { query, collection, where, getDocs } from "firebase/firestore";
-import { useSession } from "next-auth/react";
+import { Box, Grid } from "@mui/material";
+import { useState } from "react";
+import RecipesList from "@/components/RecipesList";
+import RecipeForm from "@/components/RecipeForm";
+import { usePantryItems } from "@/providers/PantryContext";
 
-export default function Dashboard() {
-
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
+export default function Recipes() {
   
-  const [pantryItems, setPantryItems] = useState<PantryItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch all pantry items for the current user
-  useEffect(() => {
-    const fetchItems = async () => {
-      if (!userId) return;
-      try {
-        const q = query(collection(db, 'items'), where("userId", "==", userId));
-        const querySnapshot = await getDocs(q);
-        const items: PantryItem[] = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        } as PantryItem));
-        setPantryItems(items);
-      } catch (error) {
-        printErrorMessage(`Error Fetching Items: ${error}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchItems();
-  }, [userId])
+  const { pantryItems, setPantryItems } = usePantryItems();
+  const [recipes, setRecipes] = useState<any[]>([]);
 
   return (
-    <Container sx={{ display: "flex", justifyContent: "center", mt: 12, width: '100vw', flexWrap: 'wrap', gap: 8}}>
-    </Container>
+    <Box sx={{ flexGrow: 1, p: 3, mt: 10}}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <RecipeForm setRecipes={setRecipes} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <RecipesList recipes={recipes} />
+        </Grid>
+      </Grid>
+    </Box>
   );
 }

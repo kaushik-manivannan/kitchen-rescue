@@ -4,8 +4,9 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
-import ToastProvider from "@/components/ToastProvider";
-import { Providers } from "@/components/SessionProvider";
+import ToastProvider from "@/providers/ToastProvider";
+import { Providers } from "@/providers/SessionProvider";
+import { PantryProvider } from "@/providers/PantryContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,9 +27,11 @@ export default async function RootLayout({
         <Providers>
           <ToastProvider>
             <AppRouterCacheProvider>
-              <ThemeProvider theme={theme}>
-                {children}
-              </ThemeProvider>
+              <PantryProvider>
+                <ThemeProvider theme={theme}>
+                  {children}
+                </ThemeProvider>
+              </PantryProvider>
             </AppRouterCacheProvider>
           </ToastProvider>
         </Providers>

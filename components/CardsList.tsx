@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import OutlinedCard from './Card';
-import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc } from 'firebase/firestore';
 import { db } from '@/app/firebase';
 import { PantryItem } from '@/interfaces/PantryItem.interface';
 import AddDialog from './AddDialog';
@@ -11,37 +11,16 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { printErrorMessage, printSuccessMessage } from '@/utils/utils';
 import { useSession } from 'next-auth/react';
+import { usePantryItems } from '@/providers/PantryContext';
 
 const CardsList = () => {
 
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
-  const [pantryItems, setPantryItems] = useState<PantryItem[]>([]);
+  const { pantryItems, setPantryItems, loading } = usePantryItems();
   const [openDialog, setOpenDialog] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-
-  // Fetch all pantry items for the current user
-  useEffect(() => {
-    const fetchItems = async () => {
-      if (!userId) return;
-      try {
-        const q = query(collection(db, 'items'), where("userId", "==", userId));
-        const querySnapshot = await getDocs(q);
-        const items: PantryItem[] = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        } as PantryItem));
-        setPantryItems(items);
-      } catch (error) {
-        printErrorMessage(`Error Fetching Items: ${error}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchItems();
-  }, [userId])
 
   // Add a new pantry item or update existing item
   const addPantryItem = async (name: string, quantity: number) => {
