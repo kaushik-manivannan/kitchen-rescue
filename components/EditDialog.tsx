@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { DialogProps } from '@/interfaces/Dialog.interface';
 import { Typography, useTheme } from '@mui/material';
@@ -87,7 +86,14 @@ const EditDialog: React.FC<DialogProps> = ({ open, handleClose, item, updatePant
         <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1), px: 2, py: 1}}>
           <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
-        <Button type="submit" variant="contained" sx={{px: 2 ,py: 1, backgroundColor: 'secondary.main'}}>
+        <Button type="submit" variant="contained" sx={{
+          px: 2,
+          py: 1,
+          backgroundColor: 'secondary.main',
+          '&:hover': {
+            backgroundColor: 'secondary.dark',
+          }
+        }}>
           <Typography textTransform={'capitalize'}>Save</Typography>
         </Button>
       </DialogActions>

@@ -79,7 +79,14 @@ const AddDialog: React.FC<AddDialogProps> = ({ open, handleClose, addPantryItem 
         <Button onClick={handleClose} variant="outlined" sx={{ marginRight: theme.spacing(1), px: 2 ,py: 1}}>
           <Typography textTransform={'capitalize'}>Cancel</Typography>
         </Button>
-        <Button type="submit" variant="contained" sx={{px: 2 ,py: 1, backgroundColor: 'secondary.main'}}>
+        <Button type="submit" variant="contained" sx={{
+          px: 2,
+          py: 1, 
+          backgroundColor: 'secondary.main',
+          '&:hover': {
+            backgroundColor: 'secondary.dark',
+          }
+        }}>
           <Typography textTransform={'capitalize'}>Add</Typography>
         </Button>
       </DialogActions>
