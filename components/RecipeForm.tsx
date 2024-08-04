@@ -9,7 +9,7 @@ import {
   Grid,
   Paper,
 } from '@mui/material';
-import { generateRecipes } from "@/utils/actions";
+import { generateRecipes } from "@/utils/recipeActions";
 import { PantryItem } from '@/interfaces/PantryItem.interface';
 
 interface RecipeFormProps {

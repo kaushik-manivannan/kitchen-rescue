@@ -12,6 +12,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { printErrorMessage, printSuccessMessage } from '@/utils/utils';
 import { useSession } from 'next-auth/react';
 import { usePantryItems } from '@/providers/PantryContext';
+import CameraComponent from './CameraComponent';
 
 const CardsList = () => {
 
@@ -151,15 +152,15 @@ const CardsList = () => {
         <Button 
           variant="contained" 
           onClick={handleDialogOpen} 
-          endIcon={<AddIcon />}
           sx={{
             marginLeft: '16px',
             borderRadius: '20px',
             textTransform: 'none',
             textWrap: 'nowrap',
             px: 3,
-            py: 1.5,
-            fontSize: '1.1rem',
+            py: 1.7,
+            mr: 1,
+            fontSize: '1rem',
             backgroundColor: 'secondary.main',
             '&:hover': {
                   backgroundColor: 'secondary.dark',
@@ -168,6 +169,7 @@ const CardsList = () => {
         >
           Add Item
         </Button>
+        <CameraComponent />
       </Box>
       
       {loading ? (

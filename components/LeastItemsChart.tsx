@@ -66,7 +66,7 @@ const LeastItemsChart = ({ pantryItems }: any) => {
           ]}
           {...chartSetting}
           layout="horizontal"
-          colors={['#C05F3D']}
+          colors={['#FFA823']}
         />
       </Box>
     </Box>
