@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Camera } from "react-camera-pro";
 import { Button } from "@mui/material";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Image from 'next/image';
 
 interface CameraMethods {
   takePhoto: () => string | null;
@@ -56,7 +57,14 @@ const ImageCapture: React.FC<ImageCaptureProps> = ({ image, onCapture }) => {
         </>
       )}
       {image && (
-        <img src={image} alt='New inventory item' style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Image
+            src={image}
+            alt='New inventory item'
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
       )}
     </div>
   );

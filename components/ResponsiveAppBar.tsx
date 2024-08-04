@@ -100,8 +100,8 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <Link href={`/${page.toLowerCase()}`}>
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Link href={`/${page.toLowerCase()}`} key={page}>
+                    <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textTransform={'capitalize'}>{page}</Typography>
                     </MenuItem>
                 </Link>
@@ -129,9 +129,8 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link href={`/${page.toLowerCase()}`} className='mx-2'>
+              <Link href={`/${page.toLowerCase()}`} className='mx-2' key={page}>
                 <Button
-                    key={page}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                 >
