@@ -129,7 +129,7 @@ export default function Login() {
             Log In
           </Button>
           <Typography sx={{ mt: 2, color: 'primary.main', fontWeight: 'light'}}>
-            Don't have an account yet?&nbsp;
+            Don&apos;t have an account yet?&nbsp;
             <Link href="/signup" passHref>
               <Typography component="span" sx={{ color: 'secondary.main', cursor: 'pointer', fontWeight: 'light'}}>
                 Sign Up
