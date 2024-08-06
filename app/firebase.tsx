@@ -20,6 +20,16 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+
+let analytics;
+
+if (firebaseConfig?.projectId) {
+
+  if (app.name && typeof window !== 'undefined') {
+    analytics = getAnalytics(app);
+  }
+}
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+export { analytics };
