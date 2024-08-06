@@ -11,8 +11,8 @@ import { PantryProvider } from "@/providers/PantryContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pantry Tracker AI App",
-  description: "Pantry Tracker AI App",
+  title: "Kitchen Rescue",
+  description: "Kitchen Rescue: Streamline your cooking with smart pantry management and AI-powered recipe suggestions. Reduce food waste, save time, and discover new meals effortlessly.",
 };
 
 export default async function RootLayout({
