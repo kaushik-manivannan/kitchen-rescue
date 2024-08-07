@@ -19,7 +19,7 @@ Kitchen Rescue is a web application designed to simplify cooking and grocery man
 
 ## Live Demo
 
-Explore the app in action at [Kitchen Rescue Website Demo](https://lnkd.in/ecGjbgsd).
+Explore the app in action [here]((https://kitchenrescue.vercel.app/)).
 
 ## Getting Started
 
