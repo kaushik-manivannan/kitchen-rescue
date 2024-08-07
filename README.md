@@ -1,3 +1,15 @@
+# Kitchen Rescue
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Live Demo](#live-demo)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Overview
 
 Kitchen Rescue is a web application designed to simplify cooking and grocery management for busy individuals, particularly international students. Born out of real struggles with forgotten groceries, recipe searches, and meal planning, Kitchen Rescue provides a seamless experience to track groceries, generate meal ideas, and manage cooking efficiently.
@@ -19,7 +31,7 @@ Kitchen Rescue is a web application designed to simplify cooking and grocery man
 
 ## Live Demo
 
-Explore the app in action [here]((https://kitchenrescue.vercel.app/)).
+Explore the app in action [here](https://kitchenrescue.vercel.app/).
 
 ## Getting Started
 
